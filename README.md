@@ -20,4 +20,4 @@ A exemple automation project with appium + selenium + java
 
 # Setup
 
-
+* Capabilities
