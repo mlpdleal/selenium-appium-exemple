@@ -6,10 +6,10 @@ A exemple automation project with appium + selenium + java
 * JDK 8
 * Android studio
 * SDK tools
-* platform tools
+* Platform tools
 * Appium server
 
-# most used commands
+# Most used commands
 
 * adb devices
 * adb devices -l 
