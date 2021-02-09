@@ -20,7 +20,7 @@ A exemple automation project with appium + selenium + java
 
 # Setup
 
-#### Desired Capabilities:
+### Desired Capabilities:
 
 1. Run Appium Server
 2. Choose the option "Start Inspector Session"
