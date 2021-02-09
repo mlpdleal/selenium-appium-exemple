@@ -20,11 +20,11 @@ A exemple automation project with appium + selenium + java
 
 # Setup
 
-Desired Capabilities:
+## Desired Capabilities:
 
-1- Run Appium Server
-2- Choose the option "Start Inspector Session"
-3- In "Custon Server" tab, insert the desired capability
+1. Run Appium Server
+2. Choose the option "Start Inspector Session"
+3. In "Custon Server" tab, insert the desired capability
 
 Exemple:
 
@@ -39,7 +39,7 @@ Exemple:
 }
 
 ```
-4- The "appPackage" and "appActivity" values is avaliable in apkinfo.apk;
+4. The "appPackage" and "appActivity" values is avaliable in apkinfo.apk;
 
 https://apkpure.com/apk-info/com.intelloware.apkinfo
 
