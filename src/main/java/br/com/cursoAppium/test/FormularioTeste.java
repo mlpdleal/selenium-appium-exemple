@@ -4,16 +4,15 @@ import static org.junit.Assert.assertEquals;
 
 import java.net.MalformedURLException;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.cursoAppium.core.DriverFactory;
+import br.com.cursoAppium.core.BaseTest;
 import br.com.cursoAppium.page.FormularioPage;
 import br.com.cursoAppium.page.MenuPage;
 
-public class FormularioTeste {
+public class FormularioTeste extends BaseTest{
 	
 	private MenuPage menu = new MenuPage();
 	private FormularioPage formulario = new FormularioPage();
@@ -23,10 +22,6 @@ public class FormularioTeste {
 		menu.acessarFormulario();
 	}
 
-	@After
-	public void tearDown() {
-		DriverFactory.killDriver();
-	}
 
 	@Test
 	public void devePreencherCampoTexto() throws MalformedURLException {
