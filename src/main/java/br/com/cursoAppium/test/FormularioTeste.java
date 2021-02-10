@@ -8,19 +8,19 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 
-import br.com.cursoAppium.core.DSL;
 import br.com.cursoAppium.core.DriverFactory;
-import io.appium.java_client.MobileBy;
+import br.com.cursoAppium.page.FormularioPage;
+import br.com.cursoAppium.page.MenuPage;
 
 public class FormularioTeste {
-
-	private DSL dsl = new DSL();
+	
+	private MenuPage menu = new MenuPage();
+	private FormularioPage formulario = new FormularioPage();
 
 	@Before
 	public void setUp() throws MalformedURLException {
-		dsl.clicarPorTexto("Formulário");
+		menu.acessarFormulario();
 	}
 
 	@After
@@ -30,23 +30,23 @@ public class FormularioTeste {
 
 	@Test
 	public void devePreencherCampoTexto() throws MalformedURLException {
-		dsl.escrever(MobileBy.AccessibilityId("nome"), "Manoel");
-		assertEquals("Manoel", dsl.obterTexto(MobileBy.AccessibilityId("nome")));
+		formulario.escreverCampoNome("Manoel");
+		assertEquals("Manoel", formulario.obterValorCampoNome());
 	}
 
 	@Test
 	public void deveInteragirComOCombo() throws MalformedURLException {
-		dsl.selecionarCombo(MobileBy.AccessibilityId("console"), "Nintendo Switch");
-		String texto = dsl.obterTexto(By.xpath("//android.widget.Spinner/android.widget.TextView"));
+		formulario.selecionarCombo("Nintendo Switch");
+		String texto = formulario.obterTextoSelecionadoCombo();
 		Assert.assertEquals("Nintendo Switch", texto);
 	}
 
 	@Test
 	public void deveInteragirCheckBox() throws MalformedURLException {
-		dsl.clicar(MobileBy.AccessibilityId("check"));
-		dsl.clicar(MobileBy.AccessibilityId("switch"));
-		Assert.assertTrue(dsl.isCheckMarcado(MobileBy.AccessibilityId("check")));
-		Assert.assertFalse(dsl.isCheckMarcado(MobileBy.AccessibilityId("switch")));
+		formulario.clicarNoCheck();
+		formulario.clicarNoSwitch();
+		Assert.assertTrue(formulario.isCheckMarcado());
+		Assert.assertFalse(formulario.isSwitchOn());
 	}
 
 }

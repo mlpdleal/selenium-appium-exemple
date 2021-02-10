@@ -1,82 +1,62 @@
 package br.com.cursoAppium.test;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
-
 import static org.junit.Assert.assertEquals;
-import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
-import io.appium.java_client.MobileBy;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.remote.MobileCapabilityType;
+import java.net.MalformedURLException;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import br.com.cursoAppium.core.DriverFactory;
+import br.com.cursoAppium.page.FormularioPage;
+import br.com.cursoAppium.page.MenuPage;
 
 public class DesafioCap3 {
+	
+	private MenuPage menu = new MenuPage();
+	private FormularioPage formulario = new FormularioPage();
+	
+	@Before
+	public void setUp() {
+		menu.acessarFormulario();
+	}
+	
+	@After
+	public void tearDown() {
+		DriverFactory.killDriver();
+	}
 
 	@Test
 	public void preencherFormulario() throws MalformedURLException {
+		formulario.escreverCampoNome("Manoel");
+		String valorCampoNome = formulario.obterValorCampoNome();
+	    formulario.selecionarCombo("PS4");
+        String ps4Text = formulario.obterTextoSelecionadoCombo().toLowerCase();
+        formulario.clicarNoCheck();
+        boolean marcado = formulario.isCheckMarcado();
+        formulario.clicarNoSwitch();
+        boolean on = formulario.isSwitchOn();
+        formulario.clicarSalvar();
 
-		DesiredCapabilities capabilities = new DesiredCapabilities();
-		capabilities.setCapability("platformName", "Android");
-		capabilities.setCapability("deviceName", "emulator-5554");
-		capabilities.setCapability("automationName", "uiautomator2");
-		capabilities.setCapability(MobileCapabilityType.APP,
-				"/home/manoel/Documents/automation_projects/selenium-appium-exemple/src/main/resources/CTAppium_1_2(1).apk");
+		assertEquals("Nome: " + valorCampoNome, formulario.obterTextoNome());
+		assertEquals("Console: " + ps4Text, formulario.obterTextoConsole());
+		assertEquals("Switch: " + switchIsOn(on), formulario.obterTextoSwitch());
+		assertEquals("Checkbox: " + checkMarcado(marcado), formulario.obterTextoCheck());
 
-		AndroidDriver<MobileElement> driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"),
-				capabilities);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-		driver.findElement(By.xpath("//android.widget.TextView[@text='Formulário']")).click();
-
-		MobileElement campoNome = driver.findElement(MobileBy.AccessibilityId("nome"));
-		campoNome.sendKeys("Manoel");
-		String valorCampoNome = campoNome.getText();
-
-		MobileElement comboConsole = driver.findElement(MobileBy.AccessibilityId("console"));
-		comboConsole.click();
-
-		MobileElement PS4 = driver.findElement(By.xpath("//android.widget.CheckedTextView[@text='PS4']"));
-		PS4.click();
-
-		String ps4Text = driver.findElement(By.xpath("//android.widget.Spinner/android.widget.TextView")).getText();
-
-		MobileElement checkElement = driver.findElement(MobileBy.AccessibilityId("check"));
-		checkElement.click();
-		String isCheck = checkElement.getAttribute("checked");
-
-		MobileElement switchElement = driver.findElement(MobileBy.AccessibilityId("switch"));
-		switchElement.click();
-		String switchIsCheck = switchElement.getAttribute("checked");
-
-		driver.findElement(By.xpath("//android.widget.TextView[@text='SALVAR']")).click();
-
-		assertEquals("Nome: " + valorCampoNome,
-				driver.findElement(By.xpath("//android.widget.TextView[@index='12']")).getText());
-		assertEquals("Console: " + (ps4Text.toLowerCase()),
-				driver.findElement(By.xpath("//android.widget.TextView[@index='13']")).getText());
-		assertEquals("Switch: " + switchIsOn(switchIsCheck),
-				driver.findElement(By.xpath("//android.widget.TextView[@index='15']")).getText());
-		assertEquals("Checkbox: " + checkMarcado(isCheck),
-				driver.findElement(By.xpath("//android.widget.TextView[@index='16']")).getText());
-
-		driver.quit();
 	}
 
-	private String checkMarcado(String value) {
+	private String checkMarcado(boolean marcado) {
 
-		if (value.equals("true")) {
+		if (marcado) {
 			return "Marcado";
 		}
 
 		return "Desabilitado";
 	}
 
-	private String switchIsOn(String value) {
-		if (value.equals("true")) {
+	private String switchIsOn(boolean on) {
+		if (on) {
 			return "On";
 		}
 
