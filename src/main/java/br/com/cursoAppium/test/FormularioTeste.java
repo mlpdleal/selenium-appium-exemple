@@ -70,5 +70,35 @@ public class FormularioTeste {
 
 	}
 	
+	@Test
+	public void deveInteragirCheckBox() throws MalformedURLException {
+		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+		desiredCapabilities.setCapability("platformName", "Android");
+		desiredCapabilities.setCapability("deviceName", "emulator-5554");
+		desiredCapabilities.setCapability("automationName", "uiautomator2");
+		desiredCapabilities.setCapability(MobileCapabilityType.APP,
+				"/home/manoel/Documents/automation_projects/selenium-appium-exemple/src/main/resources/CTAppium_1_2(1).apk");
+
+		AndroidDriver<MobileElement> driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),
+				desiredCapabilities);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+		driver.findElement(By.xpath("//*[@text='Formulário']")).click();
+		
+		MobileElement check = driver.findElement(MobileBy.AccessibilityId("check"));
+		
+		check.click();
+		
+		MobileElement switchElement = driver.findElement(MobileBy.AccessibilityId("switch"));
+		
+		switchElement.click();
+		
+		Assert.assertEquals("true",check.getAttribute("checked"));
+		Assert.assertEquals("false", switchElement.getAttribute("checked"));
+		
+		driver.quit();
+
+	}
+	
 
 }
