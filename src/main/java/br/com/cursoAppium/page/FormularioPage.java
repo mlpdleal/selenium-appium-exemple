@@ -63,5 +63,9 @@ public class FormularioPage extends BasePage{
 	public String obterTextoCheck() {
 		return obterTexto(By.xpath("//android.widget.TextView[@index='16']"));
 	}
+	
+	public String obterTextoData() {
+		return obterTexto(By.xpath("//*[@text='20/2/2000']"));
+	}
 
 }

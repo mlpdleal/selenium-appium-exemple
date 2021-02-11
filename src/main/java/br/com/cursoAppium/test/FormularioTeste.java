@@ -60,5 +60,13 @@ public class FormularioTeste extends BaseTest{
 		assertEquals("Nome: Manoel", formulario.obterTextoNome());
 	
 	}
+	
+	@Test
+	public void deveInteragirComData() {
+		formulario.clicarPorTexto("1/2/2000");
+		formulario.clicarPorTexto("20");
+		formulario.clicarPorTexto("OK");
+		assertEquals("20/2/2000", formulario.obterTextoData());
+	}
 
 }
