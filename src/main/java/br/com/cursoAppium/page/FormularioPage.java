@@ -44,6 +44,10 @@ public class FormularioPage extends BasePage{
 		clicar(By.xpath("//android.widget.TextView[@text='SALVAR']"));
 	}
 	
+	public void clicarSalvarDemorado() {
+		clicar(By.xpath("//android.widget.TextView[@text='SALVAR DEMORADO']"));
+	}
+	
 	public String obterTextoNome() {
 		return obterTexto(By.xpath("//android.widget.TextView[@index='12']"));
 	}
