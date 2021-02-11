@@ -39,5 +39,9 @@ public class BasePage {
 		List<MobileElement> elementos = getDriver().findElements(By.xpath("//*[@text='"+texto+"']"));
 		return elementos.size() > 0;
 	}
+	
+	public String obterAtributo (By by, String atributo) {
+		return getDriver().findElement(by).getAttribute(atributo);
+	}
 
 }
