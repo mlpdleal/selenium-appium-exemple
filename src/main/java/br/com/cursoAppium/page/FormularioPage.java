@@ -1,9 +1,12 @@
 package br.com.cursoAppium.page;
 
+import static br.com.cursoAppium.core.DriverFactory.getDriver;
+
 import org.openqa.selenium.By;
 
 import br.com.cursoAppium.core.BasePage;
 import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
 
 public class FormularioPage extends BasePage{
 	
@@ -22,6 +25,15 @@ public class FormularioPage extends BasePage{
 	
 	public String obterTextoSelecionadoCombo() {
 		return obterTexto(By.xpath("//android.widget.Spinner/android.widget.TextView"));
+	}
+	
+	public void clicarSeekBar(double posicao) {
+		MobileElement seek = getDriver().findElement(MobileBy.AccessibilityId("slid"));
+		int y = seek.getLocation().y + (seek.getSize().height / 2);
+		
+		int x =  (int) (seek.getLocation().x + (seek.getSize().width * posicao));
+		
+		tap(x, y);
 	}
 	
 	public void clicarNoCheck() {

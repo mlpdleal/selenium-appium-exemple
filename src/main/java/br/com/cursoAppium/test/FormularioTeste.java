@@ -68,5 +68,11 @@ public class FormularioTeste extends BaseTest{
 		formulario.clicarPorTexto("OK");
 		assertEquals("20/2/2000", formulario.obterTextoData());
 	}
+	
+	@Test
+	public void deveInteragirComSeekBar() {
+		formulario.clicarSeekBar(0.75);
+		formulario.clicarSalvar();
+	}
 
 }

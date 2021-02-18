@@ -7,6 +7,8 @@ import java.util.List;
 import org.openqa.selenium.By;
 
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidTouchAction;
+import io.appium.java_client.touch.offset.PointOption;
 
 public class BasePage {
 	
@@ -43,5 +45,14 @@ public class BasePage {
 	public String obterAtributo (By by, String atributo) {
 		return getDriver().findElement(by).getAttribute(atributo);
 	}
+	
+	public void press(int x, int y) {
+		new AndroidTouchAction(getDriver()).press(PointOption.point(x, y)).perform();
+	}
+	
+	public void tap(int x, int y) {
+		new AndroidTouchAction(getDriver()).tap(PointOption.point(x, y)).perform();
+	}
+
 
 }

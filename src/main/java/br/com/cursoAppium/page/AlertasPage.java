@@ -6,6 +6,10 @@ import br.com.cursoAppium.core.BasePage;
 
 public class AlertasPage extends BasePage {
 
+	public void clicarAlertaSimples() {
+		clicarPorTexto("ALERTA SIMPLES");
+	}
+	
 	public void clicarAlertaConfirm() {
 		clicarPorTexto("ALERTA CONFIRM");
 	}
