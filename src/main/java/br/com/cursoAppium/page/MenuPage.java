@@ -29,5 +29,10 @@ public class MenuPage extends BasePage{
 		clicarPorTexto("Cliques");
 	}
 	
+	public void acessarOpcaoEscondida() {
+		clicarPorTexto("Opção bem escondida");
+	}
+	
+	
 
 }
