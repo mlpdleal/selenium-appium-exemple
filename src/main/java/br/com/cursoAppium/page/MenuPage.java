@@ -33,6 +33,9 @@ public class MenuPage extends BasePage{
 		clicarPorTexto("Opção bem escondida");
 	}
 	
+	public void acessarSBHibrido() {
+		clicarPorTexto("SeuBarriga Híbrido");
+	}
 	
 
 }
