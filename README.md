@@ -41,3 +41,10 @@ Exemple:
 ```
 4. The "appPackage" and "appActivity" values is avaliable in apkinfo.apk: https://apkpure.com/apk-info/com.intelloware.apkinfo
 
+# Appium Server Chromedriver path for Webview app
+
+1. In Appium Server desktop aplication, set the Advanced tab;
+2. Type the chromedriver path in "Chromedriver Binary Path" field;
+3. Save this Preset;
+4. When it run the webview app, select this preset.
+
