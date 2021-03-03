@@ -13,10 +13,11 @@ public class OpcaoEscondidaTest extends BaseTest {
 	@Test
 	public void deveEncontrarOpcaoEscondida() {
 		//scroll down
-		menu.scroll(0.3, 0.6);
+		menu.scrollToElementByText("Opção bem escondida");
 		
 		//clicar menu
-		menu.acessarOpcaoEscondida();
+		
+		menu.clicarPorTexto("Opção bem escondida");
 		
 		//verificar mensagem
 		Assert.assertTrue(menu.existeElementoPorTexto("Você achou essa opção"));
